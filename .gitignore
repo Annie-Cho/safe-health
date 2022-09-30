@@ -1,0 +1,5 @@
+# Custom
+node_modules/
+my-bucket-key.json
+.env
+mysql-connector-java-8.0.28.jar
