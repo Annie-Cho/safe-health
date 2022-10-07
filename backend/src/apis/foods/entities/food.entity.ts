@@ -3,6 +3,7 @@ import { SubCategory } from 'src/apis/subCategories/entities/subCategory.entity'
 import { Image } from 'src/apis/images/entities/image.entity';
 import {
   Column,
+  CreateDateColumn,
   DeleteDateColumn,
   Entity,
   ManyToMany,
@@ -39,6 +40,9 @@ export class Food {
   @Column({ default: false })
   @Field(() => Boolean)
   isSoldout: boolean;
+
+  @CreateDateColumn()
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;

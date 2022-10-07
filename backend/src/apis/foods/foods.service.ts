@@ -32,6 +32,14 @@ export class FoodsService {
     });
   }
 
+  findNewestFood() {
+    return this.foodRepository.find({
+      relations: ['subCategory', 'images'],
+      order: { createdAt: 'DESC' },
+      take: 10,
+    });
+  }
+
   findOne({ foodId }) {
     return this.foodRepository.findOne({
       where: { id: foodId },
