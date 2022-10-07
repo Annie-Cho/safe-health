@@ -92,6 +92,7 @@ type Query {
   fetchFoods(search: String): [Food!]!
   fetchFoodsWithDeleted: [Food!]!
   fetchFood(foodId: String!): Food!
+  fetchNewFoods: [Food!]!
   fetchUsers: [User!]!
   fetchUsersWithDeleted: [User!]!
   fetchUser(email: String!): User!

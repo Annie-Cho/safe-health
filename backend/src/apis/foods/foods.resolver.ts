@@ -93,6 +93,11 @@ export class FoodsResolver {
     return this.foodsService.findOne({ foodId });
   }
 
+  @Query(() => [Food])
+  fetchNewFoods() {
+    return this.foodsService.findNewestFood();
+  }
+
   @Mutation(() => Food)
   createFood(
     @Args('createFoodInput') createFoodInput: CreateFoodInput, //
