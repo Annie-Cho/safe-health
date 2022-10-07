@@ -28,13 +28,17 @@ yarn start:dev
 
 # 📬 커밋 메시지 구조
 ```
-feat : 새로운 기능에 대한 커밋
-fix : build 빌드 관련 파일 수정에 대한 커밋
-build : 빌드 관련 파일 수정에 대한 커밋
-chore : 그 외 자잘한 수정에 대한 커밋(rlxk qusrud)
-ci : CI 관련 설정 수정에 대한 커밋
-docs : 문서 수정에 대한 커밋
-style : 코드 스타일 혹은 포맷 등에 관한 커밋
-refactor : 코드 리팩토링에 대한 커밋
-test : 테스트 코드 수정에 대한 커밋
+feat : 새로운 기능 추가
+fix : 버그 수정
+docs : 문서 관련
+refactor : 코드 리팩토링
+test : 테스트 코드
+chore : 빌드 업무 수정, 패키지 매니저 수정 등
+add : 기능도 아니고 문서도 아닌 무언가를 수정할 때
+delete : 삭제
+update : 버전 업데이트
+rename : 이름 변경
+move : 코드나 파일 이동
+modify : 수정
+correct : 문법 오류, 타입 변경, 오타 등
 ```
