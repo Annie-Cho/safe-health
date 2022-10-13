@@ -1,12 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { User } from 'src/apis/users/entities/user.entity';
-import { UserGrade } from 'src/apis/usersGrades/entities/userGrade.entity';
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
-  ManyToMany,
-  OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -16,11 +15,27 @@ export class Coupon {
   @Field(() => String)
   id: string;
 
-  @Column({ type: 'varchar', length: 100 })
-  @Field(() => String)
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  @Field(() => String, { nullable: true })
   desc: string;
 
-  @ManyToMany(() => UserGrade, (userGrades) => userGrades.coupons)
-  @Field(() => [UserGrade])
-  userGrades: UserGrade[];
+  @Column({ nullable: true })
+  @Field(() => Date, { nullable: true })
+  startDate: Date;
+
+  @Column({ nullable: true })
+  @Field(() => Date, { nullable: true })
+  endDate: Date;
+
+  @CreateDateColumn()
+  @Field(() => Date, { nullable: true })
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  @Field(() => Date, { nullable: true })
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  @Field(() => Date, { nullable: true })
+  deletedAt: Date;
 }
