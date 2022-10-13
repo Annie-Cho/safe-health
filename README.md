@@ -25,6 +25,9 @@
 ## 1차 (ver.0.1)
 ![image](https://user-images.githubusercontent.com/99185757/194040332-25380729-4043-49df-962c-a5a5b19aa205.png)
 
+## 2차 (ver.0.2)
+![스크린샷 2022-10-13 오후 6 19 29](https://user-images.githubusercontent.com/99185757/195557180-b83b125d-153a-494c-8fb1-2310f42a14c2.png)
+
 <br>
 
 # 🔗 파이프라인
