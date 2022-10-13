@@ -27,7 +27,7 @@ export class AuthsResolver {
       throw new UnprocessableEntityException('이메일이 존재하지 않습니다.');
     }
 
-    const isAuth = await bcrypt.compare(pwd, user.pwd);
+    const isAuth = await bcrypt.compare(pwd, user.password);
     if (!isAuth) {
       throw new UnprocessableEntityException('비밀번호가 틀렸습니다.');
     }

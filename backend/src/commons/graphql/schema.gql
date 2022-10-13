@@ -20,25 +20,38 @@ type Image {
   food: Food!
 }
 
-type UserGrade {
-  id: String!
-  name: String!
-  coupons: [Coupon!]!
-}
-
 type Coupon {
   id: String!
-  desc: String!
-  userGrades: [UserGrade!]!
+  desc: String
+  startDate: DateTime
+  endDate: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Grade {
+  id: String!
+  name: String
 }
 
 type User {
   id: String!
-  email: String!
-  name: String!
-  address: String!
-  point: Int!
-  userGrade: UserGrade!
+  email: String
+  name: String
+  password: String
+  address: String
+  addressDetail: String
+  point: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  grade: Grade
 }
 
 type Payment {
@@ -65,11 +78,6 @@ enum PAYMENT_STATUS_ENUM {
   PAID
   CANCELED
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Food {
   id: String!
