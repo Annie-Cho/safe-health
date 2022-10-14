@@ -1,6 +1,6 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { Min } from 'class-validator';
-import { ImageInput } from 'src/apis/images/dto/Image.input';
+import { ImageInput } from 'src/apis/foodImages/dto/Image.input';
 
 @InputType()
 export class CreateFoodInput {

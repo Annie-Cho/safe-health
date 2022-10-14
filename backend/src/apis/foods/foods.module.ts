@@ -3,14 +3,14 @@ import { Food } from './entities/food.entity';
 import { FoodsResolver } from './foods.resolver';
 import { FoodsService } from './foods.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Image } from '../images/entities/image.entity';
 import { ElasticsearchModule } from '@nestjs/elasticsearch';
+import { FoodImage } from '../foodImages/entities/foodImage.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       Food, //
-      Image,
+      FoodImage,
     ]),
     ElasticsearchModule.register({
       node: 'http://elasticsearch:9200',

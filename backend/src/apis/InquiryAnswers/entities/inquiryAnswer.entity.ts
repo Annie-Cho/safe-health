@@ -1,32 +1,33 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Food } from 'src/apis/foods/entities/food.entity';
 import {
   Column,
+  CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Image {
+export class InquiryAnswer {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String)
   id: string;
 
-  @Column({ type: 'varchar', length: 200 })
-  @Field(() => String)
-  url: string;
-
   @Column()
-  @Field(() => Boolean)
-  isMain: boolean;
+  @Field(() => String)
+  contents: string;
+
+  @CreateDateColumn()
+  @Field(() => Date)
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  @Field(() => Date)
+  updatedAt: Date;
 
   @DeleteDateColumn()
+  @Field(() => Date)
   deletedAt: Date;
-
-  @ManyToOne(() => Food, (food) => food.images)
-  @Field(() => Food)
-  food: Food;
 }

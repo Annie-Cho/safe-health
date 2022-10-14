@@ -19,9 +19,6 @@ export class SubCategory {
   @Field(() => String)
   name: string;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
-
   @ManyToOne(() => MainCategory)
   @Field(() => MainCategory)
   mainCategory: MainCategory;
