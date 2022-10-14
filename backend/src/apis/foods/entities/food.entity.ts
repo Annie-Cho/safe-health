@@ -1,6 +1,5 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
 import { SubCategory } from 'src/apis/subCategories/entities/subCategory.entity';
-import { Image } from 'src/apis/images/entities/image.entity';
 import {
   Column,
   CreateDateColumn,
@@ -12,34 +11,39 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Payment } from 'src/apis/payments/entities/payment.entity';
+import { FoodImage } from 'src/apis/foodImages/entities/foodImage.entity';
+import { Order } from 'src/apis/orders/entities/order.entity';
 
 @Entity()
 @ObjectType()
 export class Food {
   @PrimaryGeneratedColumn('uuid')
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   id: string;
 
   @Column({ type: 'varchar', length: 100 })
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   name: string;
 
   @Column()
-  @Field(() => Int)
+  @Field(() => String, { nullable: true })
+  brandName: string;
+
+  @Column()
+  @Field(() => Int, { nullable: true })
   price: number;
 
   @Column({ type: 'varchar', length: 500 })
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   description: string;
 
   @Column()
-  @Field(() => Int)
-  kcal: number;
+  @Field(() => Int, { nullable: true })
+  stock: number;
 
-  @Column({ default: false })
-  @Field(() => Boolean)
-  isSoldout: boolean;
+  @Column({ type: 'float', default: 0 })
+  @Field(() => Float, { nullable: true })
+  score: number;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -54,12 +58,12 @@ export class Food {
   @Field(() => SubCategory)
   subCategory: SubCategory;
 
-  @ManyToMany(() => Payment, (payments) => payments.foods)
-  @Field(() => [Payment])
-  payments: Payment[];
-
   //For Image
-  @OneToMany(() => Image, (image) => image.food)
-  @Field(() => [Image])
-  images: Image[];
+  @OneToMany(() => FoodImage, (image) => image.food)
+  @Field(() => [FoodImage])
+  foodImages: FoodImage[];
+
+  @ManyToMany(() => Order, (orders) => orders.foods)
+  @Field(() => [Order])
+  orders: Order[];
 }

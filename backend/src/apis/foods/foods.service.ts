@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { FoodImage } from '../foodImages/entities/foodImage.entity';
 import { Food } from './entities/food.entity';
-import { Image } from '../images/entities/image.entity';
 
 @Injectable()
 export class FoodsService {
@@ -15,8 +15,8 @@ export class FoodsService {
     @InjectRepository(Food)
     private readonly foodRepository: Repository<Food>,
 
-    @InjectRepository(Image)
-    private readonly imageRepository: Repository<Image>,
+    @InjectRepository(FoodImage)
+    private readonly foodImageRepository: Repository<FoodImage>,
   ) {}
 
   findAll() {
@@ -61,7 +61,7 @@ export class FoodsService {
       images.map(
         (ele, idx) =>
           new Promise((resolve, reject) => {
-            this.imageRepository.save({
+            this.foodImageRepository.save({
               url: ele.url,
               isMain: idx === 0 ? true : false,
               food: foodResult,
@@ -82,7 +82,7 @@ export class FoodsService {
 
     const result = this.foodRepository.create({
       ...createdResult,
-      images,
+      // images,
     });
     return result;
   }
@@ -99,7 +99,7 @@ export class FoodsService {
     }
 
     //상품과 일치하는 이미지 데이터 삭제하기
-    const _images = await this.imageRepository.find({
+    const _images = await this.foodImageRepository.find({
       where: { food: myFood },
     });
     if (_images.length !== 0) {
@@ -107,7 +107,7 @@ export class FoodsService {
         _images.map(
           (ele) =>
             new Promise((resolve, reject) => {
-              this.imageRepository.softDelete({ id: ele.id });
+              this.foodImageRepository.softDelete({ id: ele.id });
               resolve('이미지 삭제 성공');
               reject('이미지 삭제 실패');
             }),
@@ -120,7 +120,7 @@ export class FoodsService {
       images.map(
         (ele, idx) =>
           new Promise((resolve, reject) => {
-            this.imageRepository.save({
+            this.foodImageRepository.save({
               url: ele.url,
               isMain: idx === 0 ? true : false,
               food: myFood,
@@ -159,13 +159,15 @@ export class FoodsService {
       where: { id: foodId },
     });
 
-    if (food.isSoldout) {
-      throw new UnprocessableEntityException('현재 품절된 상품입니다.');
-    }
+    // if (food.isSoldout) {
+    //   throw new UnprocessableEntityException('현재 품절된 상품입니다.');
+    // }
   }
 
   async delete({ foodId }) {
-    const imageResult = await this.imageRepository.softDelete({ food: foodId });
+    const imageResult = await this.foodImageRepository.softDelete({
+      food: foodId,
+    });
 
     if (imageResult.affected) {
       const result = await this.foodRepository.softDelete({ id: foodId });
@@ -179,7 +181,9 @@ export class FoodsService {
   }
 
   async restore({ foodId }) {
-    const imageResult = await this.imageRepository.restore({ food: foodId });
+    const imageResult = await this.foodImageRepository.restore({
+      food: foodId,
+    });
     if (imageResult.affected) {
       const result = await this.foodRepository.restore({ id: foodId });
       return result.affected;

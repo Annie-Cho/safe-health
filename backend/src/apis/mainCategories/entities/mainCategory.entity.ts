@@ -1,10 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import {
-  Column,
-  DeleteDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -16,7 +11,4 @@ export class MainCategory {
   @Column({ type: 'varchar', length: 10, unique: true })
   @Field(() => String)
   name: string;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }

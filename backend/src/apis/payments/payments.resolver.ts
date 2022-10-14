@@ -34,7 +34,7 @@ export class PaymentsResolver {
     const email = context.req.user.email;
     const user = await this.usersService.findOne({ email });
 
-    return this.paymentsService.findByUser({ user });
+    // return this.paymentsService.findByUser({ user });
   }
 
   @UseGuards(GqlAuthAccessGuard)
@@ -58,11 +58,11 @@ export class PaymentsResolver {
     await this.paymentsService.checkIsAlreadyAdded({ impUid: imp_uid });
 
     //결제 추가 검증
-    this.paymentsService.checkIsPaid({
-      createPaymentInput,
-      amount,
-      status,
-    });
+    // this.paymentsService.checkIsPaid({
+    //   createPaymentInput,
+    //   amount,
+    //   status,
+    // });
 
     //Payment테이블에 추가하기
     const user = context.req.user;
@@ -85,21 +85,21 @@ export class PaymentsResolver {
     const accessToken = await this.iamportService.getAccessToken();
 
     //아임포트로 결제환불 요청
-    const cancelPayment = await this.iamportService.getCancelData({
-      impUid,
-      reason,
-      amount: payment.amount,
-      accessToken,
-    });
+    // const cancelPayment = await this.iamportService.getCancelData({
+    //   impUid,
+    //   reason,
+    //   // amount: payment.amount,
+    //   accessToken,
+    // });
 
     //Payment테이블에 추가하기
     const user = context.req.user;
-    const { cancel_amount } = cancelPayment;
-    return this.paymentsService.createCanceledPayment({
-      user,
-      payment,
-      cancel_amount,
-    });
+    // const { cancel_amount } = cancelPayment;
+    // return this.paymentsService.createCanceledPayment({
+    //   user,
+    //   payment,
+    //   cancel_amount,
+    // });
   }
 
   @Mutation(() => Payment)
@@ -107,6 +107,6 @@ export class PaymentsResolver {
     @Args('paymentId') paymentId: string, //
     @Args('orderStatus') orderStatus: string,
   ) {
-    return this.paymentsService.update({ paymentId, orderStatus });
+    // return this.paymentsService.update({ paymentId, orderStatus });
   }
 }

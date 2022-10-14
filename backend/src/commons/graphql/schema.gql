@@ -13,7 +13,7 @@ type SubCategory {
   mainCategory: MainCategory!
 }
 
-type Image {
+type FoodImage {
   id: String!
   url: String!
   isMain: Boolean!
@@ -35,6 +35,20 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Payment {
+  id: String!
+  price: Int
+  status: PAYMENT_STATUS_ENUM!
+  impUid: String!
+  createdAt: DateTime!
+  coupon: Coupon!
+}
+
+enum PAYMENT_STATUS_ENUM {
+  PAID
+  CANCELED
+}
+
 type Grade {
   id: String!
   name: String
@@ -54,46 +68,61 @@ type User {
   grade: Grade
 }
 
-type Payment {
+type Order {
   id: String!
-  order_status: ORDER_STATUS_ENUM!
-  amount: Int!
-  payment_status: PAYMENT_STATUS_ENUM!
-  impUid: String!
-  createdAt: DateTime!
+  address: String
+  addressDetail: String
+  status: String!
+  createdAt: DateTime
   user: User!
-  coupon: Coupon!
+  payment: Payment!
   foods: [Food!]!
 }
 
-enum ORDER_STATUS_ENUM {
-  ORDERED
-  ORDER_CANCELED
-  PREPARE
-  DILIVERY_STARTED
-  DILIVERED
-}
-
-enum PAYMENT_STATUS_ENUM {
-  PAID
-  CANCELED
-}
-
 type Food {
-  id: String!
-  name: String!
-  price: Int!
-  description: String!
-  kcal: Int!
-  isSoldout: Boolean!
+  id: String
+  name: String
+  brandName: String
+  price: Int
+  description: String
+  stock: Int
+  score: Float
   subCategory: SubCategory!
-  payments: [Payment!]!
-  images: [Image!]!
+  foodImages: [FoodImage!]!
+  orders: [Order!]!
 }
 
 type Nutri {
   id: String!
   name: String!
+}
+
+type CommentImages {
+  id: String!
+  url: String
+  isMain: Boolean
+  comment: Comment!
+}
+
+type CommentAnswer {
+  id: String!
+  contents: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime!
+}
+
+type Comment {
+  id: String!
+  contents: String
+  score: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime!
+  user: User!
+  food: Food!
+  commentAnswer: CommentAnswer!
+  images: [CommentImages!]!
 }
 
 type Query {
