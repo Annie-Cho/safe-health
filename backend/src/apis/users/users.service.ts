@@ -1,6 +1,7 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Grade } from '../grades/entities/grade.entity';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -8,6 +9,9 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    @InjectRepository(Grade)
+    private readonly gradeRepository: Repository<Grade>,
   ) {}
 
   findAll() {
@@ -30,12 +34,18 @@ export class UsersService {
     return result;
   }
 
-  create({ hashedPwd: pwd, email, name, address }) {
+  async create({ hashedPwd: password, email, name, address, addressDetail }) {
+    const grade = await this.gradeRepository.findOne({
+      where: { name: '브론즈' },
+    });
+
     return this.userRepository.save({
-      pwd, //
       email,
+      password, //
       name,
       address,
+      addressDetail,
+      grade,
     });
   }
 
