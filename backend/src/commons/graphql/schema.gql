@@ -130,17 +130,17 @@ type Query {
   fetchFoodsWithDeleted: [Food!]!
   fetchFood(foodId: String!): Food!
   fetchNewFoods: [Food!]!
+  fetchNutries: [Nutri!]!
+  fetchMainCategories: [MainCategory!]!
+  fetchMainCategoriesWithDeleted: [MainCategory!]!
+  fetchPayments: [Payment!]!
+  fetchPayment(paymentId: String!): Payment!
+  fetchPaymentByUser: [Payment!]!
+  fetchSubCategories: [SubCategory!]!
   fetchUsers: [User!]!
   fetchUsersWithDeleted: [User!]!
   fetchUser(email: String!): User!
   fetchLoginUser: User!
-  fetchSubCategories: [SubCategory!]!
-  fetchMainCategories: [MainCategory!]!
-  fetchMainCategoriesWithDeleted: [MainCategory!]!
-  fetchNutries: [Nutri!]!
-  fetchPayments: [Payment!]!
-  fetchPayment(paymentId: String!): Payment!
-  fetchPaymentByUser: [Payment!]!
 }
 
 type Mutation {
@@ -152,24 +152,25 @@ type Mutation {
   updateFood(foodId: String!, updateFoodInput: UpdateFoodInput!): Food!
   deleteFood(foodId: String!): Boolean!
   restoreFood(foodId: String!): Boolean!
+  createNutri(nutriName: String!): Nutri!
+  createMainCategory(createMainCategoryInput: CreateMainCategoryInput!): MainCategory!
+  updateMainCategory(mainCategoryId: String!, updateMainCategoryInput: UpdateMainCategoryInput!): MainCategory!
+  deleteMainCategory(mainCategoryId: String!): Boolean!
+  restoreMainCategory(mainCategoryId: String!): Boolean!
+  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
+  cancelPayment(impUid: String!, reason: String!): Payment!
+  updateOrderStatus(paymentId: String!, orderStatus: String!): Payment!
+  createSubCategory(createSubCategory: CreateSubCategory!): SubCategory!
+  updateSubCategory(subCategoryId: String!, updateSubCategory: UpdateSubCategory!): SubCategory!
+  deleteSubCategory(subCategoryId: String!): Boolean!
+  restoreSubCategory(subCategoryId: String!): Boolean!
+  sendTokenToPhone(phoneNumber: String!): Boolean!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(email: String!, updateUserInput: UpdateUserInput!): User!
   updateUserPwd(pwd: String!): User!
   deleteUser(email: String!): Boolean!
   deleteLoginUser: Boolean!
   restoreUser(email: String!): Boolean!
-  createSubCategory(createSubCategory: CreateSubCategory!): SubCategory!
-  updateSubCategory(subCategoryId: String!, updateSubCategory: UpdateSubCategory!): SubCategory!
-  deleteSubCategory(subCategoryId: String!): Boolean!
-  restoreSubCategory(subCategoryId: String!): Boolean!
-  createMainCategory(createMainCategoryInput: CreateMainCategoryInput!): MainCategory!
-  updateMainCategory(mainCategoryId: String!, updateMainCategoryInput: UpdateMainCategoryInput!): MainCategory!
-  deleteMainCategory(mainCategoryId: String!): Boolean!
-  restoreMainCategory(mainCategoryId: String!): Boolean!
-  createNutri(nutriName: String!): Nutri!
-  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
-  cancelPayment(impUid: String!, reason: String!): Payment!
-  updateOrderStatus(paymentId: String!, orderStatus: String!): Payment!
 }
 
 """The `Upload` scalar type represents a file upload."""
@@ -197,30 +198,6 @@ input UpdateFoodInput {
   images: [ImageInput!]
 }
 
-input CreateUserInput {
-  email: String!
-  name: String!
-  password: String!
-  address: String!
-  addressDetail: String!
-}
-
-input UpdateUserInput {
-  name: String
-  address: String
-  addressDetail: String
-}
-
-input CreateSubCategory {
-  name: String!
-  mainCategoryId: String!
-}
-
-input UpdateSubCategory {
-  name: String
-  mainCategoryId: String
-}
-
 input CreateMainCategoryInput {
   name: String!
 }
@@ -233,4 +210,28 @@ input CreatePaymentInput {
   impUid: String!
   amount: Int!
   foodIds: [String!]!
+}
+
+input CreateSubCategory {
+  name: String!
+  mainCategoryId: String!
+}
+
+input UpdateSubCategory {
+  name: String
+  mainCategoryId: String
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+  password: String!
+  address: String!
+  addressDetail: String!
+}
+
+input UpdateUserInput {
+  name: String
+  address: String
+  addressDetail: String
 }
