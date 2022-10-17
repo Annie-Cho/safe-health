@@ -9,8 +9,11 @@ export class CreateUserInput {
   name: string;
 
   @Field(() => String)
-  pwd: string;
+  password: string;
 
   @Field(() => String)
   address: string;
+
+  @Field(() => String)
+  addressDetail: string;
 }

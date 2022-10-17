@@ -97,13 +97,6 @@ type Nutri {
   name: String!
 }
 
-type CommentImages {
-  id: String!
-  url: String
-  isMain: Boolean
-  comment: Comment!
-}
-
 type CommentAnswer {
   id: String!
   contents: String!
@@ -125,11 +118,19 @@ type Comment {
   images: [CommentImages!]!
 }
 
+type CommentImages {
+  id: String!
+  url: String
+  isMain: Boolean
+  comment: Comment!
+}
+
 type Query {
   fetchFoods(search: String): [Food!]!
   fetchFoodsWithDeleted: [Food!]!
   fetchFood(foodId: String!): Food!
   fetchNewFoods: [Food!]!
+  fetchPopularFoodsByCategory(subCategory: String!): [Food!]!
   fetchUsers: [User!]!
   fetchUsersWithDeleted: [User!]!
   fetchUser(email: String!): User!
@@ -200,13 +201,15 @@ input UpdateFoodInput {
 input CreateUserInput {
   email: String!
   name: String!
-  pwd: String!
+  password: String!
   address: String!
+  addressDetail: String!
 }
 
 input UpdateUserInput {
   name: String
   address: String
+  addressDetail: String
 }
 
 input CreateSubCategory {

@@ -6,6 +6,7 @@ import { JwtRefreshStrategy } from 'src/commons/auth/jwt-refresh.strategy';
 import { JwtGoogleStrategy } from 'src/commons/auth/jwt-social-google.strategy';
 import { JwtKakaoStrategy } from 'src/commons/auth/jwt-social-kakao.strategy';
 import { JwtNaverStrategy } from 'src/commons/auth/jwt-social-naver.strategy';
+import { Grade } from '../grades/entities/grade.entity';
 import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { AuthController } from './auths.controller';
@@ -15,7 +16,10 @@ import { AuthsService } from './auths.service';
 @Module({
   imports: [
     JwtModule.register({}), //
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([
+      User, //
+      Grade,
+    ]),
   ],
   providers: [
     JwtAccessStrategy,

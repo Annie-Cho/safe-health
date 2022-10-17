@@ -40,11 +40,11 @@ export class UsersResolver {
       email: createUserInput.email,
     });
 
-    // const { pwd, ...user } = createUserInput;
-    const { pwd, email, name, address } = createUserInput;
-    const hashedPwd = await bcrypt.hash(pwd, 10);
+    const { password, ...user } = createUserInput;
+    // const { password, email, name, address } = createUserInput;
+    const hashedPwd = await bcrypt.hash(password, 10);
     console.log(hashedPwd);
-    return this.usersService.create({ hashedPwd, email, name, address });
+    return this.usersService.create({ hashedPwd, ...user });
   }
 
   // @UseGuards(GqlAuthAccessGuard)
