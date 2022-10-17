@@ -130,7 +130,6 @@ type Query {
   fetchFoodsWithDeleted: [Food!]!
   fetchFood(foodId: String!): Food!
   fetchNewFoods: [Food!]!
-  fetchPopularFoodsByCategory(subCategory: String!): [Food!]!
   fetchUsers: [User!]!
   fetchUsersWithDeleted: [User!]!
   fetchUser(email: String!): User!
