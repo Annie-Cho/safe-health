@@ -13,17 +13,19 @@ import { PaymentsModule } from './apis/payments/payments.module';
 import { FileModule } from './apis/file/file.module';
 import { RedisClientOptions } from 'redis';
 import * as redisStore from 'cache-manager-redis-store';
+import { TokensModule } from './apis/tokens/tokens.module';
 
 @Module({
   imports: [
     AuthsModule,
     FileModule,
     FoodsModule,
-    UsersModule,
-    SubCategoriesModule,
-    MainCategoriesModule,
     NutriesModule,
+    MainCategoriesModule,
     PaymentsModule,
+    SubCategoriesModule,
+    TokensModule,
+    UsersModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/commons/graphql/schema.gql',
