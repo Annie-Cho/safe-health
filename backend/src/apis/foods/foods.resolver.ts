@@ -89,13 +89,15 @@ export class FoodsResolver {
   }
 
   @Query(() => Food)
-  fetchFood(@Args('foodId') foodId: string) {
+  fetchFood(
+    @Args('foodId') foodId: string, //
+  ) {
     return this.foodsService.findOne({ foodId });
   }
 
   @Query(() => [Food])
   fetchNewFoods() {
-    return this.foodsService.findNewestFood();
+    return this.foodsService.findNewestFoods();
   }
 
   @Mutation(() => Food)
