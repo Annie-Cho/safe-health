@@ -1,73 +1,63 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# 🥗 세이프헬스
+- 요즘 개인의 건강이 우선시 되다보니, 건강식품을 구입하여 먹는 사람들이 많아졌습니다. 따라서 다양한 건강한 식품들을 판매하고 이와 더불어 자신이 원하는 칼로리에 맞춰 한 끼의 식사를 구매할 수 있는 세이프 헬스를 기획하게되었습니다.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<br>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# 📚 기술 스택
+- Nestjs
+- Docker
+- MySQL
+- Redis
+- Elasticsearch
 
-## Description
+<br>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# 🧮 ERD설계
+## 1차
+<img src="https://user-images.githubusercontent.com/99185757/187082882-a3de17a0-6d8f-49f8-9eb6-7d27bc0aee20.png" width="1200"></img>
 
-## Installation
+## 2차
+![스크린샷 2022-10-13 오후 6 08 02](https://user-images.githubusercontent.com/99185757/195554583-e3477b1d-a223-45ce-858c-7a761d63a5b2.png)
 
-```bash
-$ npm install
+<br>
+
+# 📝 API명세서
+## 1차 (ver.0.1)
+![image](https://user-images.githubusercontent.com/99185757/194040332-25380729-4043-49df-962c-a5a5b19aa205.png)
+
+## 2차 (ver.0.2)
+![스크린샷 2022-10-13 오후 6 19 29](https://user-images.githubusercontent.com/99185757/195557180-b83b125d-153a-494c-8fb1-2310f42a14c2.png)
+
+<br>
+
+# 🔗 파이프라인
+## 검색
+<img src="https://user-images.githubusercontent.com/99185757/187083102-fa582b94-4635-4516-8c1f-52b4a17a3d48.png" width="1200"></img>
+
+<br>
+
+# 🖥 프로젝트 설치 방법
+>1. 레포지토리 포크
+>2. Git clone
+>3. yarn install
+>4. docker-compose build
+>5. docker-compose up
+
+<br>
+
+# 📬 커밋 메시지 구조
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+feat : 새로운 기능 추가
+fix : 버그 수정
+docs : 문서 관련
+refactor : 코드 리팩토링
+test : 테스트 코드
+chore : 빌드 업무 수정, 패키지 매니저 수정 등
+add : 기능도 아니고 문서도 아닌 무언가를 수정할 때
+delete : 삭제
+update : 버전 업데이트
+rename : 이름 변경
+move : 코드나 파일 이동
+modify : 수정
+correct : 문법 오류, 타입 변경, 오타 등
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
