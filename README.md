@@ -37,11 +37,11 @@
 <br>
 
 # 🖥 프로젝트 설치 방법
-- Installation
-```
-yarn install
-yarn start:dev
-```
+>1. 레포지토리 포크
+>2. Git clone
+>3. yarn install
+>4. docker-compose build
+>5. docker-compose up
 
 <br>
 
