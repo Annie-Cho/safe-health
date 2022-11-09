@@ -43,13 +43,11 @@ export class FoodsResolver {
           //   },
           // },
         });
-        // console.log(JSON.stringify(esSearchResult, null, '  '));
 
         //3. 검색된 데이터 Food 객체로 만들기
         const result = this.foodsService.makeItem({
           data: esSearchResult.hits.hits,
         });
-        // console.log(JSON.stringify(result, null, '  '));
 
         //4. Elasticsearch에서 조회한 결과 Redis에 저장하기
         const isSaved = await this.cacheManager.set(
@@ -59,7 +57,6 @@ export class FoodsResolver {
             ttl: 1200,
           },
         );
-        // console.log('isSaved = ', isSaved);
 
         return result;
       } else {
