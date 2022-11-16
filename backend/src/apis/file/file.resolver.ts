@@ -7,9 +7,9 @@ export class FileResolver {
   constructor(private readonly fileSerivice: FileService) {}
 
   @Mutation(() => [String])
-  uploadFile(
+  uploadFiles(
     @Args({ name: 'files', type: () => [GraphQLUpload] }) files: FileUpload[],
   ) {
-    return this.fileSerivice.upload({ files });
+    return this.fileSerivice.uploadMany({ files });
   }
 }
