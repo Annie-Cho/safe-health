@@ -13,7 +13,14 @@ export class UsersResolver {
 
   @UseGuards(GqlAuthAccessGuard)
   @Query(() => [User])
-  fetchUsers() {
+  async fetchUsers(
+    @Context() context: any, //
+  ) {
+    //관리자 여부 확인
+    const email = context.req.user.email;
+    await this.usersService.checkIsAdmin(email);
+
+    //등록된 유저 목록 조회
     return this.usersService.findAll();
   }
 

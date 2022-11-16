@@ -62,6 +62,8 @@ type User {
   address: String
   addressDetail: String
   point: Int
+  seller: Boolean!
+  admin: Boolean!
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -97,6 +99,13 @@ type Nutri {
   name: String!
 }
 
+type CommentImages {
+  id: String!
+  url: String
+  isMain: Boolean
+  comment: Comment!
+}
+
 type CommentAnswer {
   id: String!
   contents: String!
@@ -116,13 +125,6 @@ type Comment {
   food: Food!
   commentAnswer: CommentAnswer!
   images: [CommentImages!]!
-}
-
-type CommentImages {
-  id: String!
-  url: String
-  isMain: Boolean
-  comment: Comment!
 }
 
 type Query {
@@ -228,10 +230,12 @@ input CreateUserInput {
   password: String!
   address: String!
   addressDetail: String!
+  seller: Boolean!
 }
 
 input UpdateUserInput {
   name: String
   address: String
   addressDetail: String
+  seller: Boolean
 }

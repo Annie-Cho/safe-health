@@ -43,6 +43,14 @@ export class User {
   @Field(() => Int, { nullable: true })
   point: number;
 
+  @Column({ default: false, nullable: true })
+  @Field(() => Boolean)
+  seller: boolean;
+
+  @Column({ default: false, nullable: true })
+  @Field(() => Boolean)
+  admin: boolean;
+
   @CreateDateColumn()
   @Field(() => Date, { nullable: true })
   createdAt: Date;

@@ -16,4 +16,7 @@ export class CreateUserInput {
 
   @Field(() => String)
   addressDetail: string;
+
+  @Field(() => Boolean)
+  seller: boolean;
 }
