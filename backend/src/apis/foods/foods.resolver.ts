@@ -49,7 +49,7 @@ export class FoodsResolver {
           search, //
           result,
           {
-            ttl: 1200,
+            ttl: 3,
           },
         );
 
