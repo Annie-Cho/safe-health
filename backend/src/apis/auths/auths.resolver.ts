@@ -22,7 +22,7 @@ export class AuthsResolver {
     @Args('pwd') pwd: string,
     @Context() context: IContext,
   ) {
-    const user = await this.usersService.findOne({ email });
+    const user = await this.usersService.findOne(email);
     if (!user) {
       throw new UnprocessableEntityException('이메일이 존재하지 않습니다.');
     }

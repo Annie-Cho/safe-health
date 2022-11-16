@@ -37,8 +37,10 @@ export class AuthsService {
   }
 
   async socialLogin({ req, res }) {
+    const email = req.user.email;
+
     //가입확인
-    let user = await this.usersService.findOne({ email: req.user.email });
+    let user = await this.usersService.findOne(email);
 
     //회원가입
     if (!user) {

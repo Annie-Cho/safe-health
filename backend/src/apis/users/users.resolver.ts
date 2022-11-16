@@ -4,8 +4,9 @@ import { UpdateUserInput } from './dto/updateUser.input';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 import * as bcrypt from 'bcrypt';
-import { UseGuards } from '@nestjs/common';
+import { ConflictException, UseGuards } from '@nestjs/common';
 import { GqlAuthAccessGuard } from 'src/commons/auth/gql-auth.guard';
+import { IContext } from 'src/commons/type/context';
 
 @Resolver()
 export class UsersResolver {
@@ -31,14 +32,14 @@ export class UsersResolver {
 
   @Query(() => User)
   fetchUser(@Args('email') email: string) {
-    return this.usersService.findOne({ email });
+    return this.usersService.findOne(email);
   }
 
   @UseGuards(GqlAuthAccessGuard)
   @Query(() => User)
   fetchLoginUser(@Context() context: any) {
     const email = context.req.user.email;
-    return this.usersService.findOne({ email });
+    return this.usersService.findOne(email);
   }
 
   @Mutation(() => User)
@@ -54,13 +55,22 @@ export class UsersResolver {
     return this.usersService.create({ hashedPwd, ...user });
   }
 
-  // @UseGuards(GqlAuthAccessGuard)
+  @UseGuards(GqlAuthAccessGuard)
   @Mutation(() => User)
-  updateUser(
-    @Args('email') email: string,
+  async updateUser(
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
+    @Context() context: IContext,
   ) {
-    return this.usersService.update({ email, updateUserInput });
+    const email = context.req.user.email;
+
+    //유저 정보 조회
+    const user = await this.usersService.findOne(email);
+    if (!user) {
+      throw new ConflictException('유저 정보를 조회할 수 없습니다.');
+    }
+
+    //유저 정보 업데이트
+    return this.usersService.update(user, updateUserInput);
   }
 
   @UseGuards(GqlAuthAccessGuard)

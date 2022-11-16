@@ -2,6 +2,7 @@ import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Grade } from '../grades/entities/grade.entity';
+import { UpdateUserInput } from './dto/updateUser.input';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -22,16 +23,8 @@ export class UsersService {
     return this.userRepository.find({ withDeleted: true });
   }
 
-  async findOne({ email }) {
-    const result = await this.userRepository.findOne({ where: { email } });
-    // if (!result) {
-    //   throw new UnprocessableEntityException(
-    //     '해당하는 사용자 정보가 없습니다.',
-    //   );
-    // } else {
-    //   return result;
-    // } //google 로그인하면서 없을 경우 넘어가지를 않아 주석처리
-    return result;
+  async findOne(email: string): Promise<User> {
+    return this.userRepository.findOne({ where: { email } });
   }
 
   async create({ hashedPwd: password, email, name, address, addressDetail }) {
@@ -49,12 +42,9 @@ export class UsersService {
     });
   }
 
-  async update({ email, updateUserInput }) {
-    const user = await this.userRepository.findOne({ where: { email } });
-
+  async update(user: User, updateUserInput: UpdateUserInput): Promise<User> {
     return this.userRepository.save({
       ...user,
-      id: user.id,
       ...updateUserInput,
     });
   }
