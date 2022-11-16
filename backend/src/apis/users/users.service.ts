@@ -49,13 +49,6 @@ export class UsersService {
     });
   }
 
-  async checkIsAvailable({ email }) {
-    const user = await this.userRepository.findOne({ where: { email } });
-    if (user) {
-      throw new UnprocessableEntityException('이미 사용중인 아이디입니다.');
-    }
-  }
-
   async update({ email, updateUserInput }) {
     const user = await this.userRepository.findOne({ where: { email } });
 
@@ -84,5 +77,20 @@ export class UsersService {
   async restore({ email }) {
     const result = await this.userRepository.restore({ email });
     return result.affected;
+  }
+
+  async checkIsAvailable({ email }) {
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (user) {
+      throw new UnprocessableEntityException('이미 사용중인 아이디입니다.');
+    }
+  }
+
+  async checkIsAdmin(email: string): Promise<boolean> {
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (!user.admin) {
+      throw new UnprocessableEntityException('관리자가 아닙니다.');
+    }
+    return true;
   }
 }
