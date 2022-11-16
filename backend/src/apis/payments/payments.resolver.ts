@@ -32,7 +32,7 @@ export class PaymentsResolver {
   @Query(() => [Payment])
   async fetchPaymentByUser(@Context() context: IContext) {
     const email = context.req.user.email;
-    const user = await this.usersService.findOne({ email });
+    const user = await this.usersService.findOne(email);
 
     // return this.paymentsService.findByUser({ user });
   }

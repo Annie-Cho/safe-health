@@ -99,13 +99,6 @@ type Nutri {
   name: String!
 }
 
-type CommentImages {
-  id: String!
-  url: String
-  isMain: Boolean
-  comment: Comment!
-}
-
 type CommentAnswer {
   id: String!
   contents: String!
@@ -125,6 +118,13 @@ type Comment {
   food: Food!
   commentAnswer: CommentAnswer!
   images: [CommentImages!]!
+}
+
+type CommentImages {
+  id: String!
+  url: String
+  isMain: Boolean
+  comment: Comment!
 }
 
 type Query {
@@ -149,7 +149,7 @@ type Mutation {
   login(email: String!, pwd: String!): String!
   logout: String!
   restoreAccessToken: String!
-  uploadFile(files: [Upload!]!): [String!]!
+  uploadFiles(files: [Upload!]!): [String!]!
   createFood(createFoodInput: CreateFoodInput!): Food!
   updateFood(foodId: String!, updateFoodInput: UpdateFoodInput!): Food!
   deleteFood(foodId: String!): Boolean!
@@ -168,7 +168,7 @@ type Mutation {
   restoreSubCategory(subCategoryId: String!): Boolean!
   sendTokenToPhone(phoneNumber: String!): Boolean!
   createUser(createUserInput: CreateUserInput!): User!
-  updateUser(email: String!, updateUserInput: UpdateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
   updateUserPwd(pwd: String!): User!
   deleteUser(email: String!): Boolean!
   deleteLoginUser: Boolean!
@@ -237,5 +237,4 @@ input UpdateUserInput {
   name: String
   address: String
   addressDetail: String
-  seller: Boolean
 }
