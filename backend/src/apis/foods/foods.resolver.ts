@@ -37,11 +37,6 @@ export class FoodsResolver {
               name: search,
             },
           },
-          // query: {
-          //   bool: {
-          //     should: [{ prefix: { name: search } }],
-          //   },
-          // },
         });
 
         //3. 검색된 데이터 Food 객체로 만들기
